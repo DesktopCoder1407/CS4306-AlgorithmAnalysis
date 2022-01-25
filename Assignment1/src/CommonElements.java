@@ -33,13 +33,15 @@
  * return CL
  * 
  * The maximum number of comparisons that my algorithm would make if the lengths of the two given
- * lists are m and n is m*n.
+ * lists are m and n is m*n. This would only happen if neither algorithm had common elements.
  * 
  */
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class CommonElements {
+	static int comparisons = 0;
+	
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		int input;
@@ -60,10 +62,10 @@ public class CommonElements {
 			if (input == 3) //Exits the program upon receiving a 3
 				break;
 			else if (input == 2) { //Runs the algorithm and displays results upon receiving a 2
-				System.out.println("\nList 1: ");
-				System.out.println("List 2: ");
-				System.out.println("Common Values: ");
-				System.out.println("Comparisons: ");
+				System.out.println("\nList 1: " + list1.toString());
+				System.out.println("List 2: " + list2.toString());
+				System.out.println("Common Values: " + getCommonElements(list1, list2).toString());
+				System.out.println("Comparisons: " + comparisons);
 			}
 			else if (input == 1) { //Reads two input lists upon receiving a 1
 				list1.clear();
@@ -74,13 +76,26 @@ public class CommonElements {
 					list1.add(Integer.parseInt(i));
 				System.out.print("Please enter the second list of integers separated by spaces: ");
 				for(String i : scan.nextLine().split(" "))
-					list1.add(Integer.parseInt(i));
+					list2.add(Integer.parseInt(i));
 			}
 		}
 		scan.close();
 	}
 
 	static ArrayList<Integer> getCommonElements(ArrayList<Integer> list1, ArrayList<Integer> list2) {
-		return null;
+		ArrayList<Integer> commonList = new ArrayList<Integer>();
+		comparisons = 0;
+		
+		for(int i = 0; i < list1.size(); i++) {
+			for(int j = 0; j < list2.size(); j++) {
+				comparisons++;
+				if(list1.get(i) == list2.get(j)) {
+					commonList.add(list2.get(j));
+					list2.remove(j);
+					break;
+				}
+			}
+		}
+		return commonList;
 	}
 }
