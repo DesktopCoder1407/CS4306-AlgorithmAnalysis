@@ -21,15 +21,12 @@
  * //L2 is the second list
  * //CL is the common list
  * 
- * for i = 0 to m - 1 do
- *   for j = 0 to n - 1 do
+ * for i <- 0 to m - 1 do
+ *   for j <- 0 to n - 1 do
  *     if L1[i] == L2[j] then
  *       CL.Add(L2[j])
  *       L2.Remove(j)
  *       break
- *     else
- *       j <- j + 1
- *   i <- i + 1
  * return CL
  * 
  * The maximum number of comparisons that my algorithm would make if the lengths of the two given
