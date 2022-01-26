@@ -80,16 +80,16 @@ public class CommonElements {
 	}
 
 	static ArrayList<Integer> getCommonElements(ArrayList<Integer> list1, ArrayList<Integer> list2) {
-		ArrayList<Integer> commonList = new ArrayList<Integer>();
-		comparisons = 0;
+		ArrayList<Integer> commonList = new ArrayList<Integer>(); //List of all common integers
+		comparisons = 0; //Resets the comparison counter to 0
 		
-		for(int i = 0; i < list1.size(); i++) {
-			for(int j = 0; j < list2.size(); j++) {
-				comparisons++;
-				if(list1.get(i) == list2.get(j)) {
-					commonList.add(list2.get(j));
-					list2.remove(j);
-					break;
+		for(int i = 0; i < list1.size(); i++) { //Outer for loop, will always loop list1.size() times.
+			for(int j = 0; j < list2.size(); j++) { //Inner for loop, best case: loops 0 times, worst case: loops list2.size() times.
+				comparisons++; //Increments the number of comparisons completed during this algorithm.
+				if(list1.get(i) == list2.get(j)) { //If list1 has a common element is list2 in this inner loop cycle,
+					commonList.add(list2.get(j)); //Add it to the common list
+					list2.remove(j); //remove it from list2 so it doesn't get counted again
+					break; //break from the inner loop and continue to the next value in the outer loop
 				}
 			}
 		}
