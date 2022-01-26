@@ -54,7 +54,6 @@ public class CommonElements {
 			System.out.print("\nEnter option number: ");
 			
 			input = scan.nextInt(); //Stores input
-			scan.reset();
 			
 			if (input == 3) //Exits the program upon receiving a 3
 				break;
