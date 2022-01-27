@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-
 // Name:		Parker Smith
 // Class:		CS 4306/1
 // Term:		Spring 2022
@@ -25,6 +22,8 @@ import java.util.Scanner;
  *   n <- n / 2
  * return b
  */
+
+import java.util.Scanner;
 
 public class DecimalToBinary {
 	static int divisions = 0;
