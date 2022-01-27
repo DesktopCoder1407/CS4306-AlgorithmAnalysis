@@ -53,7 +53,10 @@ public class CommonElements {
 			System.out.println("3. Exit program");
 			System.out.print("\nEnter option number: ");
 			
-			input = scan.nextInt(); //Stores input
+			try {
+				input = scan.nextInt(); //Stores input
+			} catch(Exception e) {System.out.println("Please enter 1, 2, or 3."); continue;}
+			finally {scan.nextLine();}
 			
 			if (input == 3) //Exits the program upon receiving a 3
 				break;
@@ -67,12 +70,17 @@ public class CommonElements {
 				list1.clear();
 				list2.clear();
 				System.out.print("\nPlease enter the first list of integers separated by spaces: ");
-				scan.nextLine();
 				for(String i : scan.nextLine().split(" "))
-					list1.add(Integer.parseInt(i));
+					try {
+						list1.add(Integer.parseInt(i));
+					}
+					catch(Exception e) {System.out.println(i + " not added. Please make sure all inputted numbers are integers.");}
 				System.out.print("Please enter the second list of integers separated by spaces: ");
 				for(String i : scan.nextLine().split(" "))
-					list2.add(Integer.parseInt(i));
+					try {
+						list2.add(Integer.parseInt(i));
+					}
+					catch(Exception e) {System.out.println(i + " not added. Please make sure all inputted numbers are integers.");}
 			}
 		}
 		scan.close();
