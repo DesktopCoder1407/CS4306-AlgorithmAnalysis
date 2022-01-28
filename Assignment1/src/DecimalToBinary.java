@@ -41,7 +41,10 @@ public class DecimalToBinary {
 			System.out.println("3. Exit program");
 			System.out.print("\nEnter option number: ");
 			
-			input = scan.nextInt(); //Stores input
+			try {
+				input = scan.nextInt(); //Stores input
+			} catch(Exception e) {System.out.println("Please enter 1, 2, or 3."); continue;}
+			finally {scan.nextLine();}
 			
 			if (input == 3) //Exits the program upon receiving a 3
 				break;
@@ -52,7 +55,9 @@ public class DecimalToBinary {
 			}
 			else if (input == 1) { //Reads input decimal value upon receiving a 1
 				System.out.print("\nPlease enter an integer: ");
-				decimal = scan.nextInt();
+				try {
+					decimal = scan.nextInt();
+				} catch(Exception e) {System.out.println("Please enter an integer."); continue;}
 			}
 		}
 		scan.close();
