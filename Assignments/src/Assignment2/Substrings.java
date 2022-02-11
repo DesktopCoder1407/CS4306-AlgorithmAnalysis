@@ -68,7 +68,7 @@ public class Substrings {
 				catch(Exception e) {System.out.println("Please enter a string input value.");}
 			}
 			else if (input == 2) { //Runs the algorithm and displays output
-				System.out.println("\nInput string:\t" + inputString);
+				System.out.println("\nInput string:\t\t" + inputString);
 				System.out.println("# of substrings:\t" + getNumSubstrings(inputString));
 				System.out.println("# of comparisons:\t" + comparisons);
 			}
