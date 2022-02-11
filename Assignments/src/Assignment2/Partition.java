@@ -6,10 +6,16 @@
 
 /* -----Algorithm Design Block-----
 * 
-* Problem 3: Design an algorithm to 
-* 
+* Problem 3: Design an algorithm that, when given n positive integers, partition them into two disjoint subsets with the same sum of their elements.
+* 1, 2, 3
 * PSEUDOCODE:
+* //n is the number of positive integers
+* //A[n] is an array of size n that contains all the integers
+* //O[(2^n)-2] is an array of size (2^n)-2 that holds all possible subsets (excluding the empty and initial set)
 * 
+* for i <- 0 to n-1
+*   for j <- i to n-1
+*     
 * 
 * PERFORMANCE ANALYSIS:
 * 
@@ -60,9 +66,17 @@ public class Partition {
 				for (int i : integerValues)
 					System.out.print(i + " ");
 				System.out.println();
-				String[] subsets = getSubsetsWithSameSum(integerValues);
-				System.out.println("Disjoint subsets with same sum:\t" + subsets[0]);
-				System.out.println("\t\t\t\t" + subsets[1]);
+				
+				System.out.print("Disjoint subsets with same sum:\t");
+				for (int[] subsets : getSubsetsWithSameSum(integerValues)) {
+					System.out.print("{");
+					for (int i = 0; i < subsets.length; i++)
+						if(i == subsets.length - 1)
+							System.out.print(subsets[i]);
+						else
+							System.out.print(subsets[i] + ", ");
+					System.out.print("}\n\t\t\t\t");
+				}
 			}
 			else if (input == 4) { //Exits the program
 				break;
@@ -73,7 +87,7 @@ public class Partition {
 		scan.close();
 	}
 	
-	static String[] getSubsetsWithSameSum(int[] integerValues) {
-		return new String[] {"{1, 2}", "{3}"};
+	static int[][] getSubsetsWithSameSum(int[] integerValues) {
+		return new int[][] {{1,2},{3}};
 	}
 }
