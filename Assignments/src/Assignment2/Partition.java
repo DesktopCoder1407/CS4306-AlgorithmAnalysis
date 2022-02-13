@@ -7,21 +7,15 @@
 /* -----Algorithm Design Block-----
 * 
 * Problem 3: Design an algorithm that, when given n positive integers, partition them into two disjoint subsets with the same sum of their elements.
-* 1, 2, 3
-* PSEUDOCODE:
-* //n is the number of positive integers
-* //A[n] is an array of size n that contains all the integers
-* //O[(2^n)-2] is an array of size (2^n)-2 that holds all possible subsets (excluding the empty and initial set)
 * 
-* for i <- 0 to n-1
-*   for j <- i to n-1
-*     
+* PSEUDOCODE:
 * 
 * PERFORMANCE ANALYSIS:
 * 
 */
 package Assignment2;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class Partition {
 	static int comparisons = 0;
@@ -68,15 +62,7 @@ public class Partition {
 				System.out.println();
 				
 				System.out.print("Disjoint subsets with same sum:\t");
-				for (int[] subsets : getSubsetsWithSameSum(integerValues)) {
-					System.out.print("{");
-					for (int i = 0; i < subsets.length; i++)
-						if(i == subsets.length - 1)
-							System.out.print(subsets[i]);
-						else
-							System.out.print(subsets[i] + ", ");
-					System.out.print("}\n\t\t\t\t");
-				}
+				System.out.println(partitionProblem(integerValues));
 			}
 			else if (input == 4) { //Exits the program
 				break;
@@ -87,7 +73,66 @@ public class Partition {
 		scan.close();
 	}
 	
-	static int[][] getSubsetsWithSameSum(int[] integerValues) {
-		return new int[][] {{1,2},{3}};
+	static String partitionProblem(int[] input) {
+		//Variables
+		int n = input.length;
+		double targetSum = 0;
+		//-Tracking
+		boolean[] trackedSet = new boolean[n];
+		int trackedSum = 0;
+		
+		//Set the target to be the sum of all input values divided by 2
+		for (int i : input)
+			targetSum += i;
+		targetSum /= 2;
+		
+		//Check to make sure that the sum of the input values are even.
+		//  If not, we can return immediately without needing the full algorithm.
+		//  Math behind this theory: targetSum = 2x where x equals the sum of one subset, therefore targetSum MUST be even.
+		if (targetSum % 1 != 0)
+			return "No disjoint subsets with the same sum of their elements found.";
+		
+		//Primary loop
+		int i = 0;
+		while (i < n) {
+			trackedSum += input[i]; //Add the currently selected input to the subset's sum
+			if(trackedSum == targetSum) { //If the tracked sum equals the target sum (result successfully found)
+				trackedSet[i] = true; //Add the currently selected input to the tracked subset
+				LinkedList<Integer> subset1 = new LinkedList<Integer>();
+				LinkedList<Integer> subset2 = new LinkedList<Integer>();
+				for(int j = 0; j < n; j++) {
+					if (trackedSet[j])
+						subset1.add(input[j]); //Add all items in the tracked input to subset 1
+					else
+						subset2.add(input[j]); //Add all other items to subset 2
+				}
+				return String.format("%s\n\t\t\t\t%s", subset1.toString(), subset2.toString()).replace('[', '{').replace(']', '}'); //Formatted Output
+			}
+			else if(trackedSum > targetSum) { //If the tracked sum is larger than the target sum
+				trackedSum -= input[i]; //Remove the newly added input from the tracked subset
+				if(i < n-1) { //If this is not the last element in the input, skip it.
+					i++;
+					continue;
+				}
+				//If this is the last element in the input
+				boolean foundTracked = false;
+				for (int j = n - 1; j >= 0; j--) { //Loop backwards through each element
+					if(trackedSet[j] == true) { //If the element is in the tracked subset
+						foundTracked = true;
+						trackedSet[j] = false; //Remove it from the tracked subset
+						trackedSum -= input[j];
+						i = j+1; //Set the next element to be iterated to be the one after the element just removed from the tracked subset
+						break; //Break out of the loop
+					}
+				}
+				if (foundTracked == false)
+					//If no tracked items were found, the entire input has been searched.
+					return "No disjoint subsets with the same sum of their elements found.";
+				continue;
+			}
+			trackedSet[i] = true;
+			i++;
+		}
+		return "No disjoint subsets with the same sum of their elements found.";
 	}
 }
