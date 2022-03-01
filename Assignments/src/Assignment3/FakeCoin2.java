@@ -61,7 +61,18 @@
 * 
 * 
 * PART C, HOW MANY TIMES FASTER THAN THE ALGORITHM BASED ON DIVIDING COINS INTO TWO PILES?
+* X Value	|Two Pile Weighings (rounded)	|Three Pile Weighings (rounded)
+* 100		|7								|5
+* 500		|9								|6
+* 1500		|11								|7
+* 4000		|12								|8
+* 10,000	|14								|9
+* 100,000	|17								|11
+* 1,000,000	|20								|13
 * 
+* From a basic estimate, the algorithm that divides the coins into three piles seems to be 1.5 times faster than the algorithm that divides the coins into two piles.
+* 
+* In a calculator, dividing log2(n) over log3(n) returns 1.585 for all values of n > 0. Therefore, the three pile algorithm is 1.585 times faster than the two pile algorithm for any n > 0.
 */
 package Assignment3;
 import java.util.Scanner;
