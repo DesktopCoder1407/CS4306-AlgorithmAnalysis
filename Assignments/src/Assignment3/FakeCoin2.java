@@ -56,8 +56,8 @@
 * W(1) = 0
 * 
 * Solve for n = 3^k:
-* When n = 3^k, one weighing will result in n = 3^(k-1). Two weighings will result in n = 3^(k-2). This will continue until n = 3^0 = 1. W(1) is defined as having no more weighings.
-* Therefore, the number of weighings when n = 3^k is log3(n), which is equal to k.
+* n = 3^k and k = log3(n). One weighing will result in W(n) = W(n/3) + 1. Two weighings will result in W(n) = W(n/3^2) + 2. For the kth iteration, W(n) = W(n/3^k) + k.
+* W(n) = W(n/n) + k = W(1) + k = 0 + k = k. There are k weighings when n = 3^k.
 * 
 * 
 * PART C, HOW MANY TIMES FASTER THAN THE ALGORITHM BASED ON DIVIDING COINS INTO TWO PILES?
