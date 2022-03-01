@@ -51,7 +51,16 @@
 *   FindFake(A, split2 + 1, r)
 * 
 * 
-* PART B, RECURRENCE RELATION:
+* PART B, RECURRENCE RELATION FOR NUMBER OF WEIGHINGS:
+* W(n) = W(n/3) + 1 for n > 1
+* W(1) = 0
+* 
+* Solve for n = 3^k:
+* When n = 3^k, one weighing will result in n = 3^(k-1). Two weighings will result in n = 3^(k-2). This will continue until n = 3^0 = 1. W(1) is defined as having no more weighings.
+* Therefore, the number of weighings when n = 3^k is log3(n), which is equal to k.
+* 
+* 
+* PART C, HOW MANY TIMES FASTER THAN THE ALGORITHM BASED ON DIVIDING COINS INTO TWO PILES?
 * 
 */
 package Assignment3;
