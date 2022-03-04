@@ -19,13 +19,15 @@
 *   v <- A[i]
 *   j <- i - 1
 *   
-*   c1 <- c1 + 1
-*   c2 <- c2 + 1
 *   while j >= 0 and A[j] > v do
+*     c1 <- c1 + 1
+*     c2 <- c2 + 1
 *     A[j+1] <- A[j]
 *     c3 <- c3 + 1
 *     j <- j - 1
 *     c4 <- c4 + 1
+*   c1 <- c1 + 1
+*   c2 <- c2 + 1
 *   A[j+1] <- v
 *   
 * PSEUDOCODE for algorithm in the exercise:
@@ -38,23 +40,25 @@
 * for i <- 1 to n - 1 do
 *   j <- i - 1
 *   
-*   c1 <- c1 + 1
-*   c2 <- c2 + 1
 *   while j >= 0 and A[j] > A[j+1]
+*     c1 <- c1 + 1
+*     c2 <- c2 + 1
 *     swap(A[j], A[j+1])
 *     c3 <- c3 + 1
 *     j <- j - 1
 *     c4 <- c4 + 1
+*   c1 <- c1 + 1
+*   c2 <- c2 + 1
 *     
 * 
 * CODE RUN RESULTS:
 * 
 * Array Size	|Array Values		|Insertion Sort Operations	|Insertion Sort 2 Operations
 * --------------|-------------------|---------------------------|---------------------------
-* 3				|5, 14, 2			|2 + 2 + 2 + 2 = 8			|2 + 2 + 2 + 2 = 8
-* 3				|2, 1, -12			|2 + 2 + 3 + 3 = 10			|2 + 2 + 3 + 3 = 10
-* 5				|9, 32, 14, 12, 63	|4 + 4 + 3 + 3 = 14			|4 + 4 + 3 + 3 = 14
-* 6				|42, 4, 62, 17, 1, 6|5 + 5 + 10 + 10 = 30		|5 + 5 + 10 + 10 = 30
+* 3				|5, 14, 2			|4 + 4 + 2 + 2 = 12			|4 + 4 + 2 + 2 = 12
+* 3				|2, 1, -12			|5 + 5 + 3 + 3 = 16			|5 + 5 + 3 + 3 = 16
+* 5				|9, 32, 14, 12, 63	|7 + 7 + 3 + 3 = 20			|7 + 7 + 3 + 3 = 20
+* 6				|42, 4, 62, 17, 1, 6|15 + 15 + 10 + 10 = 50		|15 + 15 + 10 + 10 = 50
 * 
 * From these results, It seems that both InsertionSort and InsertionSort2 take approximately the same time (when counting statements within the inner while loop)
 * From a simple graph of these four results, both algorithms seem to run in O(n^2)
@@ -137,15 +141,17 @@ public class InsertionCompare {
 			int temp = input[i]; //Assign the current value we are sorting to a temp variable
 			int j = i - 1; //Last element in the sorted part of the list
 			
-			operations[0]++;
-			operations[1]++;
-			while(j >= 0 && input[j] > temp) { //While we are within bounds of the array AND the current sorted element is greater than the value we are sorting (This allows us to sort in ascending order)				
+			while(j >= 0 && input[j] > temp) { //While we are within bounds of the array AND the current sorted element is greater than the value we are sorting (This allows us to sort in ascending order)
+				operations[0]++;
+				operations[1]++;
 				input[j+1] = input[j]; //Shift the currently sorted element to the right by one position
 				operations[2]++;
 				
 				j = j - 1; //Move one element to the left in the sorted portion of the list
 				operations[3]++;
 			}
+			operations[0]++;
+			operations[1]++;
 			input[j+1] = temp; //Place the current value we are sorting in its final place in the sorted portion of the array.
 		}
 		
@@ -160,9 +166,9 @@ public class InsertionCompare {
 		for (int i = 1; i <= n - 1; i++) { //Loop through each element in the array, skipping the first because we count it as sorted.
 			int j = i - 1; //Last element in the sorted part of the list.
 			
-			operations[0]++;
-			operations[1]++;
-			while (j >= 0 && input[j] > input[j+1]) { //While we are within bounds of the array AND the current sorted element is greater than the element to the right (This allows us to sort in ascending order)				
+			while (j >= 0 && input[j] > input[j+1]) { //While we are within bounds of the array AND the current sorted element is greater than the element to the right (This allows us to sort in ascending order)
+				operations[0]++;
+				operations[1]++;
 				//Swap input[j] and input[j+1], assuring these two elements are in ascending order
 				int temp = input[j];
 				input[j] = input[j+1];
@@ -172,6 +178,8 @@ public class InsertionCompare {
 				j = j - 1; //Move one element to the left in the sorted portion of the list.
 				operations[3]++;
 			} //At the end of the while loop, the j'th element will always be in it's final position, and since this loop has run since i = 1 (due to this being decrease and conquer), all elements from i to 0 are in their final position.
+			operations[0]++;
+			operations[1]++;
 		}
 		
 		return input;
