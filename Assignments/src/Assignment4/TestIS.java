@@ -1,3 +1,8 @@
+//Name:			Parker Smith
+//Class:		CS 4306/1
+//Term:			Spring 2022
+//Instructor:	Dr. Haddad
+//Assignment:	4
 package Assignment4;
 import java.util.Random;
 import java.util.Scanner;
@@ -42,16 +47,27 @@ public class TestIS {
 		return Values;
 	}
 	
-	private static void DisplayArray(int[] input, int valsPerRow) {
-		int counter = 0;
-		for(int i = 0; i < input.length; i++) {
-			if(counter++ % valsPerRow == 0) {
-				System.out.print("\n" + input[i]);
-			}
-			else {
-				System.out.print("\t" + input[i]);
-			}
+	public static void RunIS(int[] Values, int size) {
+		//Output Header
+		System.out.println("\nKey\tFound\tIndex\tDivisions");
+		System.out.println("-------------------------------------------");
+		Random rand = new Random();
+		int totalDivisions = 0;
+		
+		//Run an InterpolationSearch for each row of the output table.
+		for(int i = 1; i <= size; i++) {
+			int key = rand.nextInt(1,10000);
+			InterpolationSearch search = new InterpolationSearch(Values, key);
+			totalDivisions += search.Divisions;
+			
+			System.out.println(key + "\t" + search.Found + "\t" + search.Index + "\t" + search.Divisions);
 		}
+		
+		//Conclusion lines: Average Divisions and Difference between O(log log N) and Average Divisions.
+		double averageDivisions = (double)totalDivisions / size;
+		double difference = 3.322 - averageDivisions;
+		System.out.println("\nDivisions average:\t" + averageDivisions);
+		System.out.println("Difference:\t\t" + difference);
 	}
 	
 	public static void main(String[] args) {
@@ -78,14 +94,24 @@ public class TestIS {
 			//Results from Input
 			if (input == 1) { //Creates and displays the array Values
 				Values = RandomDistinct(); //Sets Values
-				DisplayArray(Values, 30); //Displays Values with 30 values per row
+				//Displays Values with 30 values per row
+				int counter = 0;
+				for(int i = 0; i < Values.length; i++) {
+					if(counter++ % 30 == 0) {
+						System.out.print("\n" + Values[i]);
+					}
+					else {
+						System.out.print("\t" + Values[i]);
+					}
+				}
 			}
 			else if (input == 2) { //Reads output table size
+				System.out.print("Please enter the size of the output table: ");
 				try {outputTableSize = scan.nextInt();}
 				catch(Exception e) {System.out.println("Please enter only an integer."); break;}
 			}
 			else if (input == 3) { //Runs algorithm and displays results
-				
+				RunIS(Values, outputTableSize);
 			}
 			else if (input == 4) { //Exits the program
 				break;
