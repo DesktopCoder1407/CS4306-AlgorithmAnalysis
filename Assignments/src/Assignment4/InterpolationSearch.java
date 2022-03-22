@@ -15,7 +15,7 @@ public class InterpolationSearch {
 		int mid;
 		int high = input.length - 1;
 		
-		while(low < high && key < input[high] && key > input[low]) {
+		while(low <= high && key <= input[high] && key >= input[low]) {
 			mid = (int)(low + ((double)(high - low) / (input[high] - input[low])) * (key - input[low]));
 			
 			if(key == input[mid]) {
