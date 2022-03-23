@@ -6,8 +6,8 @@
 package Assignment4;
 
 public class InterpolationSearch {
-	public boolean Found;
-	public int Index;
+	public boolean Found = false;
+	public int Index = -1;
 	public int Divisions = 0;
 	
 	public InterpolationSearch(int input[], int key) {
@@ -16,7 +16,7 @@ public class InterpolationSearch {
 		int high = input.length - 1;
 		
 		while(low <= high && key <= input[high] && key >= input[low]) {
-			mid = (int)(low + ((double)(high - low) / (input[high] - input[low])) * (key - input[low]));
+			mid = low + (((key - input[low]) * (high - low)) / (input[high] - input[low]));
 			
 			if(key == input[mid]) {
 				Found = true;
@@ -29,8 +29,5 @@ public class InterpolationSearch {
 			else
 				high = mid - 1;
 		}
-		
-		Found = false;
-		Index = -1;
 	}
 }
