@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 public class Mergesort {
 	public int[] sortedArray;
-	public int divisions;
-	public int copies;
+	public int divisions = 0;
+	public int copies = 0;
 	
 	public Mergesort(int[] unsortedArray) {
 		sortedArray = Sort(unsortedArray);
@@ -44,7 +44,7 @@ public class Mergesort {
 			copies++; //Increase the number of copies
 			
 			//If A's value is smaller, place it in sorted first and increment A's pointer, otherwise place B's value in sorted and increment its pointer.
-			if(A[i] <= B[i])
+			if(A[i] <= B[j])
 				sorted[i+j] = A[i++];
 			else
 				sorted[i+j] = B[j++];

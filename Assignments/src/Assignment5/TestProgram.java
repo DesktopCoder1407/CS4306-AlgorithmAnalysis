@@ -28,6 +28,8 @@ public class TestProgram {
 		int[] Decreasing10_5 = new int[0];
 		int[] Decreasing10_6 = new int[0];
 		
+		//3D results array. 1st dimension is array type. 2nd dimension is algorithm. 3rd dimension is array size.
+		int[][][] Results = new int[3][3][4];
 		
 		while(true) {
 			//Main Menu Prompt
@@ -62,7 +64,9 @@ public class TestProgram {
 				Decreasing10_6 = DecreasingIntegers(Decreasing10_6, 1000000);
 			}
 			else if (input == 2) { //Runs the Algorithms
-				
+				//TODO: Work out why Quicksort doesn't work.
+				Quicksort test = new Quicksort(Decreasing10_3);
+				System.out.println();
 			}
 			else if (input == 3) { //Displays the Outputs
 				
