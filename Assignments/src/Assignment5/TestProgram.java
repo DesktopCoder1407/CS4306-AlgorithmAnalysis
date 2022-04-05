@@ -64,7 +64,7 @@ public class TestProgram {
 				Decreasing10_6 = DecreasingIntegers(Decreasing10_6, 1000000);
 			}
 			else if (input == 2) { //Runs the Algorithms
-				//TODO: Work out why Quicksort doesn't work.
+				//TODO: Rewrite Quicksort partitioning by writing down steps on paper.
 				Quicksort test = new Quicksort(Decreasing10_3);
 				System.out.println();
 			}

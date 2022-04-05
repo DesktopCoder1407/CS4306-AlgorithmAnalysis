@@ -17,31 +17,32 @@ public class Quicksort {
 	
 	private void Sort(int[] unsortedArray, int l, int r) {
 		if (r > l) {
-			int s = GetPartition(unsortedArray);
+			int s = GetPartition(unsortedArray, l, r);
 			Sort(unsortedArray, l, s - 1);
 			Sort(unsortedArray, s + 1, r);
 		}
 	}
 	
-	private static int GetPartition(int[] unsortedArray) {
-		int s = unsortedArray[0]; int i = 1; int j = unsortedArray.length - 1;
-		while (i < j) {
-			while(unsortedArray[i] <= s && i < j)
+	private static int GetPartition(int[] unsortedArray, int l, int r) {
+		int s = unsortedArray[l]; int i = l; int j = r + 1;
+		do {
+			do
 				i++;
-			while(unsortedArray[j] >= s)
+			while (unsortedArray[i] < s);
+			do
 				j--;
+			while (unsortedArray[j] > s);
 			
 			int temp = unsortedArray[i];
 			unsortedArray[i] = unsortedArray[j];
 			unsortedArray[j] = temp;
-			i++; j--;
-		}
+		} while (i < j);
 		
-		/*int temp = unsortedArray[i];
+		int temp = unsortedArray[i];
 		unsortedArray[i] = unsortedArray[j];
-		unsortedArray[j] = temp;*/
+		unsortedArray[j] = temp;
 		
-		unsortedArray[0] = unsortedArray[j];
+		unsortedArray[l] = unsortedArray[j];
 		unsortedArray[j] = s;
 		
 		return j;
