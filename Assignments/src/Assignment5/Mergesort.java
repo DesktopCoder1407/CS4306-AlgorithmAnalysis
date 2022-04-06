@@ -9,17 +9,15 @@ import java.util.Arrays;
 
 public class Mergesort {
 	public int[] sortedArray;
-	public int divisions = 0;
-	public int copies = 0;
+	public int comparisons = 0;
 	
 	public Mergesort(int[] unsortedArray) {
-		sortedArray = Sort(unsortedArray);
+		sortedArray = Sort(unsortedArray.clone());
 	}
 	
 	private int[] Sort(int[] unsortedArray) {
-		if (unsortedArray.length > 1) { //If there is more than one element in the array, split the array.
-			divisions++; //Increase the number of divisions
-			
+		comparisons++;
+		if (unsortedArray.length > 1) { //If there is more than one element in the array,
 			//Split the array into two evenly sized arrays.
 			int[] leftArray = Arrays.copyOf(unsortedArray, unsortedArray.length / 2);
 			int[] rightArray = Arrays.copyOfRange(unsortedArray, unsortedArray.length / 2, unsortedArray.length);
@@ -41,26 +39,30 @@ public class Mergesort {
 		
 		//While the pointers have not reached the end of their respective lists
 		while (i < A.length && j < B.length) {
-			copies++; //Increase the number of copies
+			comparisons += 2;
 			
 			//If A's value is smaller, place it in sorted first and increment A's pointer, otherwise place B's value in sorted and increment its pointer.
+			comparisons++;
 			if(A[i] <= B[j])
 				sorted[i+j] = A[i++];
 			else
 				sorted[i+j] = B[j++];
 		}
+		comparisons++;
 		
 		//Once a list is depleted, find the list that contains the remaining values and copy it into sorted.
+		comparisons++;
 		if (i == A.length)
 			for(int k = i + j; k < sorted.length; k++) {
-				copies++; //Increase the number of copies
+				comparisons++;
 				sorted[k] = B[j++];
 			}
 		else
 			for(int k = i + j; k < sorted.length; k++) {
-				copies++; //Increase the number of copies
+				comparisons++;
 				sorted[k] = A[i++];
 			}
+		comparisons++;
 		
 		return sorted; //Return the final, sorted value.
 	}

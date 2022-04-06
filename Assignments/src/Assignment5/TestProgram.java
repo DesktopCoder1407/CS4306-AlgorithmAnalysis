@@ -64,12 +64,37 @@ public class TestProgram {
 				Decreasing10_6 = DecreasingIntegers(Decreasing10_6, 1000000);
 			}
 			else if (input == 2) { //Runs the Algorithms
-				//TODO: Rewrite Quicksort partitioning by writing down steps on paper.
-				Quicksort test = new Quicksort(Decreasing10_3);
+				Heapsort r = new Heapsort(Random10_3);
+				Heapsort i = new Heapsort(Increasing10_3);
+				Heapsort d = new Heapsort(Decreasing10_3);
 				System.out.println();
 			}
 			else if (input == 3) { //Displays the Outputs
-				
+				for(int i = 0; i < Results.length; i++) {
+					if (i == 0)
+						System.out.println("\nArray Type: Random");
+					else if (i == 1)
+						System.out.println("\nArray Type: Increasing");
+					else
+						System.out.println("\nArray Type: Decreasing");
+					System.out.println("Algorithm     n=1000    n=10000     n=100000    n=1000000");
+					System.out.println("----------------------------------------------------------");
+					
+					for(int j = 0; j < Results[i].length; j++) {
+						if (j == 0)
+							System.out.print("Mergesort\t");
+						else if (j == 1)
+							System.out.print("Quicksort\t");
+						else
+							System.out.print("Heapsort\t");
+						
+						for(int k = 0; k < Results[i][j].length; k++) {
+							System.out.print(Results[i][j][k] + "      ");
+						}
+						
+						System.out.println();
+					}
+				}
 			}
 			else if (input == 4) { //Exits the program
 				break;
