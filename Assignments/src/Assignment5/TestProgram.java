@@ -64,12 +64,52 @@ public class TestProgram {
 				Decreasing10_6 = DecreasingIntegers(Decreasing10_6, 1000000);
 			}
 			else if (input == 2) { //Runs the Algorithms
-				int[] testValues = {18, 2, 8, 5, 6, 1, 3, 4, 10, 17, 7, 9, 22};
-				Heapsort test = new Heapsort(testValues);
-				//Heapsort r = new Heapsort(Random10_3);
-				//Heapsort i = new Heapsort(Increasing10_3);
-				//Heapsort d = new Heapsort(Decreasing10_3);
-				//System.out.println();
+				Results[0][0][0] = new Mergesort(Random10_3).comparisons;
+				Results[0][0][1] = new Mergesort(Random10_4).comparisons;
+				Results[0][0][2] = new Mergesort(Random10_5).comparisons;
+				Results[0][0][3] = new Mergesort(Random10_6).comparisons;
+				
+				Results[0][1][0] = new Quicksort(Random10_3).comparisons;
+				Results[0][1][1] = new Quicksort(Random10_4).comparisons;
+				Results[0][1][2] = new Quicksort(Random10_5).comparisons;
+				Results[0][1][3] = new Quicksort(Random10_6).comparisons;
+				
+				Results[0][2][0] = new Heapsort(Random10_3).comparisons;
+				Results[0][2][1] = new Heapsort(Random10_4).comparisons;
+				Results[0][2][2] = new Heapsort(Random10_5).comparisons;
+				Results[0][2][3] = new Heapsort(Random10_6).comparisons;
+				
+				
+				Results[1][0][0] = new Mergesort(Increasing10_3).comparisons;
+				Results[1][0][1] = new Mergesort(Increasing10_4).comparisons;
+				Results[1][0][2] = new Mergesort(Increasing10_5).comparisons;
+				Results[1][0][3] = new Mergesort(Increasing10_6).comparisons;
+				
+				Results[1][1][0] = new Quicksort(Increasing10_3).comparisons;
+				Results[1][1][1] = new Quicksort(Increasing10_4).comparisons;
+				//Results[1][1][2] = new Quicksort(Increasing10_5).comparisons; //ERROR DUE TO STACK OVERFLOW AND LACK OF MEMORY SPACE
+				//Results[1][1][3] = new Quicksort(Increasing10_6).comparisons; //ERROR DUE TO STACK OVERFLOW AND LACK OF MEMORY SPACE
+				
+				Results[1][2][0] = new Heapsort(Increasing10_3).comparisons;
+				Results[1][2][1] = new Heapsort(Increasing10_4).comparisons;
+				Results[1][2][2] = new Heapsort(Increasing10_5).comparisons;
+				Results[1][2][3] = new Heapsort(Increasing10_6).comparisons;
+				
+				
+				Results[2][0][0] = new Mergesort(Decreasing10_3).comparisons;
+				Results[2][0][1] = new Mergesort(Decreasing10_4).comparisons;
+				Results[2][0][2] = new Mergesort(Decreasing10_5).comparisons;
+				Results[2][0][3] = new Mergesort(Decreasing10_6).comparisons;
+				
+				Results[2][1][0] = new Quicksort(Decreasing10_3).comparisons;
+				Results[2][1][1] = new Quicksort(Decreasing10_4).comparisons;
+				//Results[2][1][2] = new Quicksort(Decreasing10_5).comparisons; //ERROR DUE TO STACK OVERFLOW AND LACK OF MEMORY SPACE
+				//Results[2][1][3] = new Quicksort(Decreasing10_6).comparisons; //ERROR DUE TO STACK OVERFLOW AND LACK OF MEMORY SPACE
+				
+				Results[2][2][0] = new Heapsort(Decreasing10_3).comparisons;
+				Results[2][2][1] = new Heapsort(Decreasing10_4).comparisons;
+				Results[2][2][2] = new Heapsort(Decreasing10_5).comparisons;
+				Results[2][2][3] = new Heapsort(Decreasing10_6).comparisons;
 			}
 			else if (input == 3) { //Displays the Outputs
 				for(int i = 0; i < Results.length; i++) {
@@ -79,19 +119,19 @@ public class TestProgram {
 						System.out.println("\nArray Type: Increasing");
 					else
 						System.out.println("\nArray Type: Decreasing");
-					System.out.println("Algorithm     n=1000    n=10000     n=100000    n=1000000");
-					System.out.println("----------------------------------------------------------");
+					System.out.println("Algorithm     n=1000     n=10000     n=100000     n=1000000");
+					System.out.println("-----------------------------------------------------------");
 					
 					for(int j = 0; j < Results[i].length; j++) {
 						if (j == 0)
-							System.out.print("Mergesort\t");
+							System.out.print("Mergesort");
 						else if (j == 1)
-							System.out.print("Quicksort\t");
+							System.out.print("Quicksort");
 						else
-							System.out.print("Heapsort\t");
+							System.out.print("Heapsort ");
 						
 						for(int k = 0; k < Results[i][j].length; k++) {
-							System.out.print(Results[i][j][k] + "      ");
+							System.out.printf("%11d  ", Results[i][j][k]);
 						}
 						
 						System.out.println();

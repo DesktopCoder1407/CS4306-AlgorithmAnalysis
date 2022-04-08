@@ -48,7 +48,7 @@ public class Mergesort {
 			else
 				sorted[i+j] = B[j++];
 		}
-		comparisons++;
+		comparisons += 2;
 		
 		//Once a list is depleted, find the list that contains the remaining values and copy it into sorted.
 		comparisons++;
