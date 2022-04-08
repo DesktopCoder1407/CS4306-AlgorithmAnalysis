@@ -3,6 +3,22 @@
 //Term: 		Spring 2022
 //Instructor: 	Dr. Haddad
 //Assignment: 	5
+//
+//ALGORITHM PERFORMANCE REVIEW:
+//
+//Best Case: O(n*logn)
+//Worst Case: O(n*logn)
+//Average Case: O(n*logn)
+//
+//Thoughts/Observations:
+//Through the tests, Mergesort tends to be the better algorithm when the array values are increasing or decreasing as it will always split directly in the middle and evaluate each half,
+//	leading to a log(n) number of splits no matter what values are in the array. In addition the Merge function must always run n times for each log(n) split to reform the array. Therefore,
+//	all cases will result in a similar running time of n*log(n).
+//
+//In regards to comparisons, all the tests returned similar numbers for each n value, whether Random, Increasing, or Decreasing. This is due to the fact that Mergesort always splits and
+//	remerges whether the items are sorted or not.
+//
+//There was an average of 2.8n*log(n) comparisons for Mergesort.
 package Assignment5;
 
 import java.util.Arrays;
