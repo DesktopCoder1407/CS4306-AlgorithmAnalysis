@@ -64,10 +64,12 @@ public class TestProgram {
 				Decreasing10_6 = DecreasingIntegers(Decreasing10_6, 1000000);
 			}
 			else if (input == 2) { //Runs the Algorithms
-				Heapsort r = new Heapsort(Random10_3);
-				Heapsort i = new Heapsort(Increasing10_3);
-				Heapsort d = new Heapsort(Decreasing10_3);
-				System.out.println();
+				int[] testValues = {18, 2, 8, 5, 6, 1, 3, 4, 10, 17, 7, 9, 22};
+				Heapsort test = new Heapsort(testValues);
+				//Heapsort r = new Heapsort(Random10_3);
+				//Heapsort i = new Heapsort(Increasing10_3);
+				//Heapsort d = new Heapsort(Decreasing10_3);
+				//System.out.println();
 			}
 			else if (input == 3) { //Displays the Outputs
 				for(int i = 0; i < Results.length; i++) {
