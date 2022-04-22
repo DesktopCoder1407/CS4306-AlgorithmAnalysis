@@ -3,6 +3,36 @@
 //Term: 		Spring 2022
 //Instructor: 	Dr. Haddad
 //Assignment: 	6
+//
+//ALGORITHM DESIGN BLOCK: Emperical Results for 5 Sample Inputs vs Theoretical Efficiency
+//
+//Theoretical Efficiency of Dynamic Hashing: O(1) in the average case if the number of keys n is about equal to the hash table's size m
+//
+//Sample 1: n = 25, m = 26. Unique words starting with different letters.
+//  Number of comparisons: 25. This is exactly O(1) since all of the words start with different letters and will always fill an empty linked list. This is the best case scenario.
+//
+//Sample 2: n = 25, m = 26. Same word starting with the same letter.
+//  Number of comparisons: 49. This is O(2), which is still a constant value. The first item will go into an empty linked list, and each following item will then compare itself
+//  with the item already in the linked list only once, since they are the same. This is an edge case, but still leads to a good result.
+//
+//Sample 3: n = 25, m = 26. Unique words starting with the same letter.
+//  Number of comparisons: 625. This is O(n) since each entry must compare with every other previously entered item. This is the worst case scenario when n is less than or equal
+//  to m.
+//
+//Sample 4: n = 25, m = 26. Random words.
+//  Number of comparisons (in the test I performed): 51. Due to randomness, this can average anywhere from O(1) (every word starting with a different letter) to O(n^2) (unique 
+//  words starting with the same letter), however it often rests at around O(2), where some words start with the same letter, but the rest are unique. As is expected, this is 
+//  very close to the theoretical efficiency of dynamic hashing. when n is close to m, the average case is close to O(1).
+//
+//Sample 5: n = [100, 250], m = 26. Large random text.
+//  In this sample, the number of words is anywhere from 100 to 250 inclusive. The number of comparisons varies, but it is typically larger than 625, the largest value from
+//  the previous tests. This shows that when the number of samples is larger than the size of the hash table, many, many more comparisons are required. Over five tests, the
+//  average number of comparisons was 1086. This shows that the average number of comparisons for a number of words larger than the size of the hash table is O(7): still
+//  lower than linear time.
+//
+//Ultimately, the average case for hashing all these numbers was very close to O(1). At maximum, the case was linear (As if searching through a linked list or an array). 
+//  Overall, I feel the Theoretical Efficiency is accurate for Dynamic Hashing.
+//
 package Assignment6;
 
 import java.util.Scanner;
@@ -38,7 +68,7 @@ public class TextHashing {
 				System.out.print("\nPlease enter the input text: ");
 				textInput = scan.nextLine().toLowerCase();
 			}
-			else if (input == 2) { //Runs the text through the hashing function and into the hash table
+			else if (input == 2) { //Runs the text through the hashing function and into the hash table				
 				//Initialize the Linked List within each Hash Table cell
 				for (int i = 0; i < hashTable.length; i++)
 					hashTable[i] = new HashList();

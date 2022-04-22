@@ -7,53 +7,45 @@ package Assignment6;
 
 public class HashList {
 	public int comparisons = 0;
+
 	//Node class within the HashList
 	private class Node{
 		Node nextNode = null;
 		String contents;
 		int count = 1;
 		
-		//Node constructor with nextNode and the node's contents
-		private Node(String contents, Node nextNode) {
-			this.contents = contents;
-			this.nextNode = nextNode;
-		}
-		
-		//Node constructor with just the node's contents
 		private Node(String contents) {
-			this(contents, null);
+			this.contents = contents;
 		}
 	}
 	
-	//Set the head of the HashList to be nothing at first
+	//Set the head and tail of the HashList to be nothing at first
 	Node head = null;
+	Node tail = null;
 	
 	public void add(String s) {
 		//If there is no head, create a new head with the input item.
 		comparisons++;
 		if (head == null) {
 			head = new Node(s); 
-			return;
+			tail = head;
 		}
-		
-		//Loop through each node, seeing whether it is the final node in the list or the contents of one of the nodes is equal to the input item.
-		Node currentNode = head;
-		while (currentNode.nextNode != null) {
-			comparisons += 2;
-			if (currentNode.contents.equals(s)) {
-				currentNode.count++;
-				return;
-			}
-			currentNode = currentNode.nextNode;
+		else {  //Loop through each node, seeing whether the contents of one of the nodes is equal to the input item.
+			Node currentNode = head;
+			do {
+				comparisons++;
+				if(currentNode.contents.equals(s)) {
+					currentNode.count++;
+					return;
+				}
+				currentNode = currentNode.nextNode;
+				comparisons++;
+			} while(currentNode != null);
+			
+			//If there are no equal items, append the node to the end of the list.
+			tail.nextNode = new Node(s);
+			tail = tail.nextNode;
 		}
-		comparisons++;
-		
-		//At end of list. If final items's contents equal the input item, increase the count.
-		comparisons++;
-		if (currentNode.contents.equals(s))
-			currentNode.count++;
-		else //Otherwise, add the new item to the end of the list
-			currentNode.nextNode = new Node(s);
 	}
 	
 	@Override
