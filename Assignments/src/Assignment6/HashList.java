@@ -6,6 +6,7 @@
 package Assignment6;
 
 public class HashList {
+	public int comparisons = 0;
 	//Node class within the HashList
 	private class Node{
 		Node nextNode = null;
@@ -29,6 +30,7 @@ public class HashList {
 	
 	public void add(String s) {
 		//If there is no head, create a new head with the input item.
+		comparisons++;
 		if (head == null) {
 			head = new Node(s); 
 			return;
@@ -37,14 +39,17 @@ public class HashList {
 		//Loop through each node, seeing whether it is the final node in the list or the contents of one of the nodes is equal to the input item.
 		Node currentNode = head;
 		while (currentNode.nextNode != null) {
+			comparisons += 2;
 			if (currentNode.contents.equals(s)) {
 				currentNode.count++;
 				return;
 			}
 			currentNode = currentNode.nextNode;
 		}
+		comparisons++;
 		
 		//At end of list. If final items's contents equal the input item, increase the count.
+		comparisons++;
 		if (currentNode.contents.equals(s))
 			currentNode.count++;
 		else //Otherwise, add the new item to the end of the list
