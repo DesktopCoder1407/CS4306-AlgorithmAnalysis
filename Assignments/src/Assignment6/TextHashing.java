@@ -164,13 +164,6 @@ public class TextHashing {
 		return (int)(s.charAt(0)) - 97; //Returns the ASCII character of the string's first character and normalizes the returned value to a number between 0 and 25 inclusive.
 	}
 	
-	private static int getAllComparisons(HashList[] s) {
-		int totalComparisons = 0;
-		for(HashList l : s)
-			totalComparisons += l.comparisons;
-		return totalComparisons;
-	}
-	
 	private static String generateRandomWord() {
 		Random rand = new Random();
 		int lengthOfString = rand.nextInt(1,11);
